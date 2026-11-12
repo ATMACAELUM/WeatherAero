@@ -1,0 +1,320 @@
+[gd_scene format=3 uid="uid://d4dbnsxr1qoat"]
+
+[ext_resource type="Script" uid="uid://cqeylpmvouws1" path="res://scripts/location_manager.gd" id="1_4c57u"]
+[ext_resource type="Script" uid="uid://qkw3pa3fcgfb" path="res://scripts/global.gd" id="1_efxa6"]
+[ext_resource type="Script" uid="uid://ckf0dpnk62se" path="res://scripts/weather_manager.gd" id="2_efxa6"]
+[ext_resource type="Script" uid="uid://bh8fp8bsd1wfj" path="res://scripts/weather_display.gd" id="3_dg77c"]
+[ext_resource type="Texture2D" uid="uid://b1s0stfrkn5tr" path="res://backgrounds/asadal_stock_2.jpg" id="4_5vw27"]
+[ext_resource type="Shader" uid="uid://daa3pr25fo1l7" path="res://shaders/round_edge.gdshader" id="4_kek77"]
+[ext_resource type="LabelSettings" uid="uid://c7lcam8jyg8u" path="res://label_settings/title.tres" id="7_4c57u"]
+[ext_resource type="Shader" uid="uid://bn8r0uvdogroh" path="res://shaders/aero.gdshader" id="7_5vw27"]
+[ext_resource type="Texture2D" uid="uid://bgwlr5udsqvn1" path="res://icons/refresh.png" id="8_4c57u"]
+[ext_resource type="Texture2D" uid="uid://dkcewk2jkv4np" path="res://icons/settings.png" id="9_efxa6"]
+[ext_resource type="Script" uid="uid://d208hfgfk7wop" path="res://scripts/carousel_scroll_container.gd" id="10_ycdy4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
+bg_color = Color(0.15686275, 0.15686275, 0.23921569, 0.37254903)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
+shader = ExtResource("4_kek77")
+shader_parameter/visible_rect = Vector4(0, 0, 1152, 96)
+shader_parameter/corner_radius = 8.00000038
+shader_parameter/antialiasing = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kek77"]
+shader = ExtResource("7_5vw27")
+shader_parameter/panel_size = Vector2(1152, 96)
+shader_parameter/glass_color = Color(0.15, 0.75, 0.95, 1)
+shader_parameter/highlight_color = Color(0.85, 1, 1, 1)
+shader_parameter/border_color = Color(0.85, 1, 1, 1)
+shader_parameter/opacity = 0.4830000229425
+shader_parameter/border_width = 3.7330001773175
+shader_parameter/corner_top_left = 6.0
+shader_parameter/corner_top_right = 6.0
+shader_parameter/corner_bottom_right = 6.0
+shader_parameter/corner_bottom_left = 6.0
+shader_parameter/gloss = 1.3070000620825
+shader_parameter/reflection = 1.3850000657875001
+shader_parameter/gradient_strength = 1.0
+shader_parameter/highlight_position = 0.66000003135
+shader_parameter/highlight_size = 0.0
+shader_parameter/shine_position = 0.035
+shader_parameter/shine_thickness = 0.025
+shader_parameter/shine_strength = 0.65
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+bg_color = Color(1, 1, 1, 0.03529412)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.15686275, 0.15686275, 0.23921569, 0.37254903)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dg77c"]
+shader = ExtResource("4_kek77")
+shader_parameter/visible_rect = Vector4(0, 0, 1152, 648.035)
+shader_parameter/corner_radius = 8.00000038
+shader_parameter/antialiasing = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_efxa6"]
+shader = ExtResource("7_5vw27")
+shader_parameter/panel_size = Vector2(1152, 552)
+shader_parameter/glass_color = Color(0.15, 0.75, 0.95, 1)
+shader_parameter/highlight_color = Color(0.85, 1, 1, 1)
+shader_parameter/border_color = Color(0.85, 1, 1, 1)
+shader_parameter/opacity = 0.34000001615
+shader_parameter/border_width = 3.3330001583175
+shader_parameter/corner_top_left = 6.0
+shader_parameter/corner_top_right = 6.0
+shader_parameter/corner_bottom_right = 6.0
+shader_parameter/corner_bottom_left = 6.0
+shader_parameter/gloss = 1.3070000620825
+shader_parameter/reflection = 1.1350000539125
+shader_parameter/gradient_strength = 0.9600000456
+shader_parameter/highlight_position = 0.7070000335825
+shader_parameter/highlight_size = 0.0670000031825
+shader_parameter/shine_position = 0.035
+shader_parameter/shine_thickness = 0.025
+shader_parameter/shine_strength = 0.65
+
+[node name="Node" type="Node" unique_id=1616232632]
+script = ExtResource("1_efxa6")
+metadata/_edit_horizontal_guides_ = [40.0]
+
+[node name="LocationManager" type="Node" parent="." unique_id=2087687335]
+script = ExtResource("1_4c57u")
+metadata/_custom_type_script = "uid://cqeylpmvouws1"
+
+[node name="WeatherManager" type="Node" parent="." unique_id=1255905520]
+script = ExtResource("2_efxa6")
+metadata/_custom_type_script = "uid://ckf0dpnk62se"
+
+[node name="Control" type="Control" parent="." unique_id=1407769660 node_paths=PackedStringArray("search", "multi_location_container", "city_name_label", "country_name_label", "todays_weather_label", "settings_button", "settings_display", "weather_bubbles_display", "weather_bubble_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_dg77c")
+search = NodePath("TopBar/LineEdit")
+multi_location_container = NodePath("ScrollContainer/VBoxContainer")
+city_name_label = NodePath("TopBar/CityName")
+country_name_label = NodePath("TopBar/CountryName")
+todays_weather_label = NodePath("TopBar/TodaysWeather")
+settings_button = NodePath("TopBar/Settings")
+settings_display = NodePath("")
+weather_bubbles_display = NodePath("Bottom/WeatherBubbles")
+weather_bubble_container = NodePath("Bottom/WeatherBubbles/HBoxContainer")
+
+[node name="TopBar" type="Panel" parent="Control" unique_id=1376418526]
+clip_contents = true
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 96.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
+
+[node name="TextureRect" type="TextureRect" parent="Control/TopBar" unique_id=1145720908]
+material = SubResource("ShaderMaterial_4c57u")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_5vw27")
+
+[node name="Panel2" type="Panel" parent="Control/TopBar" unique_id=1840347486]
+material = SubResource("ShaderMaterial_kek77")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
+
+[node name="LineEdit" type="LineEdit" parent="Control/TopBar" unique_id=14705206]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 32.0
+offset_right = 1088.0
+offset_bottom = 63.0
+placeholder_text = "Search"
+
+[node name="CityName" type="Label" parent="Control/TopBar" unique_id=1665164355]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 384.0
+offset_bottom = 40.0
+text = "City Name"
+label_settings = ExtResource("7_4c57u")
+vertical_alignment = 1
+
+[node name="CountryName" type="Label" parent="Control/TopBar" unique_id=88006255]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 384.0
+offset_bottom = 72.0
+text = "Country Name"
+label_settings = ExtResource("7_4c57u")
+vertical_alignment = 1
+
+[node name="TodaysWeather" type="Label" parent="Control/TopBar" unique_id=1673340325]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 16.0
+offset_right = 704.0
+offset_bottom = 64.0
+text = "Country Name"
+label_settings = ExtResource("7_4c57u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Refresh" type="Button" parent="Control/TopBar" unique_id=1302966414]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.014
+anchor_top = 0.062000003
+anchor_right = 0.049000002
+anchor_bottom = 0.123
+offset_left = -0.12800026
+offset_top = 26.048
+offset_right = -0.44800186
+offset_bottom = 52.192
+icon = ExtResource("8_4c57u")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Settings" type="Button" parent="Control/TopBar" unique_id=188731632]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.014
+anchor_top = 0.062000003
+anchor_right = 0.049000002
+anchor_bottom = 0.123
+offset_left = 1087.872
+offset_top = 26.048
+offset_right = 1087.552
+offset_bottom = 52.192
+icon = ExtResource("9_efxa6")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Bottom" type="Panel" parent="Control" unique_id=696640765]
+clip_contents = true
+layout_mode = 0
+offset_top = 96.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lquwl")
+
+[node name="TextureRect" type="TextureRect" parent="Control/Bottom" unique_id=1819073712]
+material = SubResource("ShaderMaterial_dg77c")
+layout_mode = 0
+offset_top = -96.0
+offset_right = 1920.0
+offset_bottom = 1104.0
+texture = ExtResource("4_5vw27")
+
+[node name="Panel2" type="Panel" parent="Control/Bottom" unique_id=199477317]
+material = SubResource("ShaderMaterial_efxa6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
+
+[node name="WeatherBubbles" type="ScrollContainer" parent="Control/Bottom" unique_id=1019264343]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 1080.0
+offset_bottom = 480.0
+follow_focus = true
+script = ExtResource("10_ycdy4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Bottom/WeatherBubbles" unique_id=489061062]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Settings" type="Panel" parent="Control/Bottom" unique_id=1522617427]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckButton" type="CheckButton" parent="Control/Bottom/Settings" unique_id=1698058813]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 273.0
+offset_bottom = 39.0
+text = "Enable Scroll Carosel"
+
+[node name="Label" type="Label" parent="Control/Bottom/Settings" unique_id=1734167644]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 304.0
+offset_right = 183.0
+offset_bottom = 327.0
+text = "Contributions:"
+
+[node name="Label2" type="Label" parent="Control/Bottom/Settings" unique_id=448978397]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 344.0
+offset_right = 224.0
+offset_bottom = 367.0
+text = "https://ipwho.is/"
+
+[node name="Label3" type="Label" parent="Control/Bottom/Settings" unique_id=861389744]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 376.0
+offset_right = 404.0
+offset_bottom = 399.0
+text = "https://geocoding-api.open-meteo.com/"
+
+[node name="Label4" type="Label" parent="Control/Bottom/Settings" unique_id=2089295753]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 408.0
+offset_right = 407.0
+offset_bottom = 431.0
+text = "https://api.open-meteo.com/v1/forecast"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control" unique_id=834294164]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 80.0
+offset_right = 1056.0
+offset_bottom = 576.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ScrollContainer" unique_id=221684113]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
