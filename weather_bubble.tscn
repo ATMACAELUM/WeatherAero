@@ -31,7 +31,36 @@ shader_parameter/shine_position = 0.90800004313
 shader_parameter/shine_thickness = 0.20000000298023
 shader_parameter/shine_strength = 0.5950000282625
 
-[node name="Button" type="Button" unique_id=1897691053 node_paths=PackedStringArray("time_label", "temp_label", "year_label", "month_label", "day_label", "weather_label")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
+bg_color = Color(0.4506486, 0.4506482, 0.45064837, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vr2uq"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vl2pr"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="Button" type="Button" unique_id=1897691053 node_paths=PackedStringArray("time_label", "temp_label", "year_label", "month_label", "day_label", "weather_label", "button")]
 custom_minimum_size = Vector2(256, 256)
 anchors_preset = -1
 anchor_right = 0.22200002
@@ -49,6 +78,7 @@ year_label = NodePath("Year")
 month_label = NodePath("Month")
 day_label = NodePath("Day")
 weather_label = NodePath("Weather")
+button = NodePath("Button")
 
 [node name="Panel" type="Panel" parent="." unique_id=630990219]
 material = SubResource("ShaderMaterial_vr2uq")
@@ -58,6 +88,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_efxa6")
+
+[node name="Button" type="Button" parent="." unique_id=472704895]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_g4v7s")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vr2uq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vl2pr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g4v7s")
+theme_override_styles/focus = SubResource("StyleBoxFlat_g4v7s")
 
 [node name="Time" type="Label" parent="." unique_id=790851746]
 layout_mode = 0

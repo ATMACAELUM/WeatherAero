@@ -7,7 +7,7 @@ extends Button
 @export var month_label: Label
 @export var day_label: Label
 @export var weather_label: Label
-
+@export var button: Button
 var _time
 var _temp
 var _weather
