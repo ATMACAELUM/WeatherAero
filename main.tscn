@@ -8,8 +8,9 @@
 [ext_resource type="LabelSettings" uid="uid://c7lcam8jyg8u" path="res://label_settings/title.tres" id="7_4c57u"]
 [ext_resource type="Shader" uid="uid://bn8r0uvdogroh" path="res://shaders/aero.gdshader" id="7_5vw27"]
 [ext_resource type="Texture2D" uid="uid://bgwlr5udsqvn1" path="res://icons/refresh.png" id="8_4c57u"]
+[ext_resource type="Shader" uid="uid://bekt50sa2ob5r" path="res://shaders/round_border.gdshader" id="8_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://dkcewk2jkv4np" path="res://icons/settings.png" id="9_efxa6"]
-[ext_resource type="Theme" uid="uid://be0guj8vwvo4" path="res://theme/aero_slider.tres" id="10_dg77c"]
+[ext_resource type="Theme" uid="uid://be0guj8vwvo4" path="res://theme/aero.tres" id="10_dg77c"]
 [ext_resource type="Script" uid="uid://d208hfgfk7wop" path="res://scripts/carousel_scroll_container.gd" id="10_ycdy4"]
 [ext_resource type="Script" uid="uid://c62aauq1june5" path="res://scripts/settings_display.gd" id="12_dg77c"]
 
@@ -53,26 +54,24 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ycdy4"]
-shader = ExtResource("7_5vw27")
-shader_parameter/panel_size = Vector2(320, 31)
-shader_parameter/glass_color = Color(0.15, 0.75, 0.95, 1)
-shader_parameter/highlight_color = Color(0.85, 1, 1, 1)
-shader_parameter/border_color = Color(0.85, 1, 1, 1)
-shader_parameter/opacity = 0.85
-shader_parameter/border_width = 2.0
-shader_parameter/corner_top_left = 6.0
-shader_parameter/corner_top_right = 6.0
-shader_parameter/corner_bottom_right = 6.0
-shader_parameter/corner_bottom_left = 6.0
-shader_parameter/gloss = 1.0
-shader_parameter/reflection = 1.0
-shader_parameter/gradient_strength = 1.0
-shader_parameter/highlight_position = 0.18
-shader_parameter/highlight_size = 0.65
-shader_parameter/shine_position = 0.035
-shader_parameter/shine_thickness = 0.025
-shader_parameter/shine_strength = 0.65
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w48qg"]
+shader = ExtResource("8_ycdy4")
+shader_parameter/top_left_radius = 0.6999999843536
+shader_parameter/top_right_radius = 0.6999999843536
+shader_parameter/bottom_left_radius = 0.6999999843536
+shader_parameter/bottom_right_radius = 0.6999999843536
+shader_parameter/antialiasing = 4.0
+
+[sub_resource type="Gradient" id="Gradient_dg77c"]
+offsets = PackedFloat32Array(0, 0.62700963, 1)
+colors = PackedColorArray(1, 1, 1, 0.5058824, 0.14901961, 0.7490196, 0.9490196, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_57qmd"]
+gradient = SubResource("Gradient_dg77c")
+width = 32
+height = 16
+fill = 1
+fill_from = Vector2(0.25641027, 0.61538464)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dg77c"]
 shader = ExtResource("7_5vw27")
@@ -172,6 +171,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("10_dg77c")
 script = ExtResource("3_dg77c")
 search = NodePath("TopBar/Search")
 multi_location_container = NodePath("Bottom/ScrollContainer/VBoxContainer")
@@ -211,13 +211,27 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
 
 [node name="Search" type="LineEdit" parent="Control/TopBar" unique_id=14705206]
-material = SubResource("ShaderMaterial_ycdy4")
 layout_mode = 0
 offset_left = 768.0
 offset_top = 32.0
 offset_right = 1088.0
 offset_bottom = 63.0
 placeholder_text = "Search"
+
+[node name="TextureRect" type="TextureRect" parent="Control/TopBar/Search" unique_id=1322442471]
+modulate = Color(1, 1, 1, 0.47058824)
+show_behind_parent = true
+material = SubResource("ShaderMaterial_w48qg")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.012
+anchor_right = 1.0120001
+anchor_bottom = 1.0
+offset_left = -0.15999985
+offset_right = 0.15997314
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_57qmd")
 
 [node name="CityName" type="Label" parent="Control/TopBar" unique_id=1665164355]
 layout_mode = 0
@@ -349,9 +363,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_lquwl")
 
 [node name="TextureRect" type="TextureRect" parent="Control/Bottom" unique_id=1819073712]
 layout_mode = 0
-offset_top = -96.0
+offset_top = -98.0
 offset_right = 1920.0
-offset_bottom = 1104.0
+offset_bottom = 1102.0
 mouse_filter = 2
 texture = ExtResource("4_5vw27")
 
@@ -372,7 +386,6 @@ offset_left = 64.0
 offset_top = 40.0
 offset_right = 1080.0
 offset_bottom = 480.0
-theme = ExtResource("10_dg77c")
 follow_focus = true
 script = ExtResource("10_ycdy4")
 
