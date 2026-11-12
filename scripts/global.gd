@@ -1,3 +1,4 @@
+class_name Global
 extends Node
 
 signal update

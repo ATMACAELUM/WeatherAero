@@ -11,7 +11,7 @@ uniform vec4 border_color : source_color = vec4(0.85, 1.0, 1.0, 1.0);
 uniform float opacity : hint_range(0.0, 1.0) = 0.85;
 uniform float border_width : hint_range(0.0, 10.0) = 2.0;
 
-// Corner radii: TL, TR, BR, BL
+// Individual corner radii
 uniform float corner_top_left : hint_range(0.0, 100.0) = 6.0;
 uniform float corner_top_right : hint_range(0.0, 100.0) = 6.0;
 uniform float corner_bottom_right : hint_range(0.0, 100.0) = 6.0;
@@ -31,7 +31,7 @@ uniform float shine_thickness : hint_range(0.001, 0.2) = 0.025;
 uniform float shine_strength : hint_range(0.0, 2.0) = 0.65;
 
 
-// Match Godot StyleBoxFlat radius scaling.
+// Scale radii proportionally to fit the panel.
 vec4 normalize_radii(vec4 radii, vec2 size) {
     float scale = 1.0;
 
@@ -60,7 +60,7 @@ vec4 normalize_radii(vec4 radii, vec2 size) {
 }
 
 
-// Rounded rectangle with independently adjustable corners.
+// Rounded rectangle with independent corners.
 float rounded_box(vec2 p, vec2 half_size, vec4 radii) {
     float radius;
 
@@ -88,10 +88,13 @@ float rounded_box(vec2 p, vec2 half_size, vec4 radii) {
 
 
 void fragment() {
+    // Preserve the original Button rendering.
+    vec4 original_color = COLOR;
+
     vec2 half_size = panel_size * 0.5;
     vec2 p = (UV - 0.5) * panel_size;
 
-    // Corner radii
+    // Corner radii: TL, TR, BR, BL.
     vec4 radii = vec4(
         corner_top_left,
         corner_top_right,
@@ -99,21 +102,21 @@ void fragment() {
         corner_bottom_left
     );
 
-    // Scale radii proportionally to fit the panel.
     radii = normalize_radii(radii, panel_size);
 
-    // Rounded rectangle mask
+    // Rounded rectangle mask.
     float dist = rounded_box(p, half_size, radii);
 
     float aa = max(fwidth(dist), 0.5);
 
     float mask = 1.0 - smoothstep(-aa, aa, dist);
 
+    // Preserve original pixels outside the glass area.
     if (mask <= 0.001) {
-        discard;
+        COLOR = original_color;
+
     }
 
-    // Border edge
     float inner_edge = smoothstep(
         border_width,
         border_width + 2.0,
@@ -122,7 +125,7 @@ void fragment() {
 
     float y = UV.y;
 
-    // Base glass gradient
+    // Base glass gradient.
     vec3 top_color = glass_color.rgb * 1.3;
     vec3 bottom_color = glass_color.rgb * 0.55;
 
@@ -132,19 +135,19 @@ void fragment() {
         smoothstep(0.0, 1.0, y)
     );
 
-    // Soft vertical gloss
+    // Soft vertical gloss.
     float vertical_gloss = exp(
         -pow((y - highlight_position) / 0.13, 2.0)
     );
 
-    // Upper reflection
+    // Upper reflection.
     float upper_reflection = 1.0 - smoothstep(
         0.0,
         0.45,
         abs(y - 0.08)
     );
 
-    // Adjustable white shine
+    // Adjustable white shine.
     float shine = exp(
         -pow(
             (y - shine_position) / shine_thickness,
@@ -152,7 +155,7 @@ void fragment() {
         )
     );
 
-    // Broad reflection
+    // Broad reflection.
     float broad_reflection = exp(
         -pow(
             (y - 0.20) / max(highlight_size, 0.01),
@@ -160,7 +163,7 @@ void fragment() {
         ) * 5.0
     );
 
-    // Center glow
+    // Center glow.
     float center_glow = exp(
         -pow(
             length(
@@ -170,14 +173,14 @@ void fragment() {
         )
     );
 
-    // Apply reflections
+    // Apply reflections.
     base_color += highlight_color.rgb * vertical_gloss * 0.16 * gloss;
     base_color += highlight_color.rgb * upper_reflection * 0.10 * reflection;
     base_color += highlight_color.rgb * shine * shine_strength * gloss;
     base_color += highlight_color.rgb * broad_reflection * 0.13 * reflection;
     base_color += highlight_color.rgb * center_glow * 0.10 * reflection;
 
-    // Border highlight
+    // Border highlight.
     float rim = 1.0 - smoothstep(
         0.0,
         border_width + 3.0,
@@ -190,16 +193,26 @@ void fragment() {
         rim * 0.55
     );
 
-    // Bottom glass gradient
+    // Bottom glass gradient.
     float bottom_rim = smoothstep(0.0, 0.12, y) *
         (1.0 - smoothstep(0.85, 1.0, y));
 
     base_color += glass_color.rgb * bottom_rim * 0.08 * gradient_strength;
 
-    // Final opacity
+    // Glass opacity.
     float alpha = opacity * (0.78 + vertical_gloss * 0.12);
 
     alpha = mix(alpha, opacity, inner_edge);
 
-    COLOR = vec4(base_color, alpha * mask);
+    // Blend glass with original Button appearance.
+    vec3 final_color = mix(
+        original_color.rgb,
+        base_color,
+        alpha
+    );
+
+    // Preserve original alpha and apply rounded clipping.
+    float final_alpha = original_color.a * mask;
+
+    COLOR = vec4(final_color, final_alpha);
 }

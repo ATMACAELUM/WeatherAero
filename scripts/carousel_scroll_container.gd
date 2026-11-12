@@ -6,12 +6,21 @@ extends ScrollContainer
 @export var selected_scale: float = 1.5
 @export var normal_scale: float = 1.0
 @export var scale_distance: float = 200.0
-@export var enabled: bool = false
+
+var enabled: bool = false
 
 func _ready() -> void:
+	var gl = get_tree().get_first_node_in_group("global") as Global
+	if gl:
+		gl.update.connect(_on_update)
 	get_h_scroll_bar().value_changed.connect(_on_scroll)
 	_on_scroll()
 
+
+func _on_update():
+	var gl = get_tree().get_first_node_in_group("global") as Global
+	if gl == null: return
+	enabled = gl.carousel_enabled
 
 func _on_scroll(_value: float = 0.0) -> void:
 	if enabled == false: return
