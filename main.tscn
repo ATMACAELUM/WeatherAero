@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://bn8r0uvdogroh" path="res://shaders/aero.gdshader" id="7_5vw27"]
 [ext_resource type="Texture2D" uid="uid://bgwlr5udsqvn1" path="res://icons/refresh.png" id="8_4c57u"]
 [ext_resource type="Texture2D" uid="uid://dkcewk2jkv4np" path="res://icons/settings.png" id="9_efxa6"]
+[ext_resource type="Theme" uid="uid://be0guj8vwvo4" path="res://theme/aero_slider.tres" id="10_dg77c"]
 [ext_resource type="Script" uid="uid://d208hfgfk7wop" path="res://scripts/carousel_scroll_container.gd" id="10_ycdy4"]
 [ext_resource type="Script" uid="uid://c62aauq1june5" path="res://scripts/settings_display.gd" id="12_dg77c"]
 
@@ -24,7 +25,7 @@ shader = ExtResource("7_5vw27")
 shader_parameter/panel_size = Vector2(1152, 96)
 shader_parameter/glass_color = Color(0.15, 0.75, 0.95, 1)
 shader_parameter/highlight_color = Color(0.85, 1, 1, 1)
-shader_parameter/border_color = Color(0.85, 1, 1, 1)
+shader_parameter/border_color = Color(0.8509804, 1, 1, 1)
 shader_parameter/opacity = 0.4830000229425
 shader_parameter/border_width = 3.7330001773175
 shader_parameter/corner_top_left = 6.0
@@ -32,7 +33,7 @@ shader_parameter/corner_top_right = 6.0
 shader_parameter/corner_bottom_right = 6.0
 shader_parameter/corner_bottom_left = 6.0
 shader_parameter/gloss = 1.3070000620825
-shader_parameter/reflection = 1.3850000657875001
+shader_parameter/reflection = 1.3850000657875
 shader_parameter/gradient_strength = 1.0
 shader_parameter/highlight_position = 0.66000003135
 shader_parameter/highlight_size = 0.0
@@ -371,6 +372,7 @@ offset_left = 64.0
 offset_top = 40.0
 offset_right = 1080.0
 offset_bottom = 480.0
+theme = ExtResource("10_dg77c")
 follow_focus = true
 script = ExtResource("10_ycdy4")
 
@@ -378,7 +380,6 @@ script = ExtResource("10_ycdy4")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Control/Bottom" unique_id=834294164]
 layout_mode = 0
