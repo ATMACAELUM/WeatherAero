@@ -75,16 +75,16 @@ fill_from = Vector2(0.25641027, 0.61538464)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dg77c"]
 shader = ExtResource("7_5vw27")
-shader_parameter/panel_size = Vector2(400, 200)
+shader_parameter/panel_size = Vector2(32, 32)
 shader_parameter/glass_color = Color(0.15, 0.75, 0.95, 1)
 shader_parameter/highlight_color = Color(0.85, 1, 1, 1)
 shader_parameter/border_color = Color(0.85, 1, 1, 1)
 shader_parameter/opacity = 0.85
 shader_parameter/border_width = 2.0
-shader_parameter/corner_top_left = 6.0
-shader_parameter/corner_top_right = 6.0
-shader_parameter/corner_bottom_right = 6.0
-shader_parameter/corner_bottom_left = 6.0
+shader_parameter/corner_top_left = 32.00000152
+shader_parameter/corner_top_right = 32.00000152
+shader_parameter/corner_bottom_right = 32.00000152
+shader_parameter/corner_bottom_left = 32.00000152
 shader_parameter/gloss = 1.0
 shader_parameter/reflection = 1.0
 shader_parameter/gradient_strength = 1.0
@@ -116,10 +116,10 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 126
+corner_radius_top_right = 126
+corner_radius_bottom_right = 126
+corner_radius_bottom_left = 126
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
 bg_color = Color(0.15686275, 0.15686275, 0.23921569, 1)
