@@ -8,6 +8,7 @@ extends Control
 @export var city_name_label: Label
 @export var country_name_label: Label
 @export var todays_weather_label: Label
+@export var refresh_button: Button
 @export var settings_button: Button
 @export var settings_display: Control
 @export var weather_bubbles_display: Control
@@ -23,6 +24,7 @@ func _ready() -> void:
 	var wm = get_tree().get_first_node_in_group("weather_manager") as WeatherManager
 	if wm:
 		wm.weather_updated.connect(_on_weather_updated)
+	refresh_button.pressed.connect(_on_refresh)
 	search.text_submitted.connect(_on_search_submit)
 	gui_input.connect(_on_gui_input)
 	settings_button.pressed.connect(_on_settings_pressed)
@@ -32,6 +34,11 @@ func _on_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == 1 or event.button_index == 2:
 			_clear_multiple()
+	
+func _on_refresh():
+	var lm = get_tree().get_first_node_in_group("location_manager") as LocationManager
+	if lm == null: return
+	lm.refresh()
 	
 	
 func _on_search_submit(txt: String):
@@ -78,6 +85,7 @@ func _on_location_set(lat, long):
 func _clear_weather_bubbles():
 	for each in weather_bubble_container.get_children():
 		each.queue_free()
+
 
 func _on_weather_updated(weather):
 	_clear_weather_bubbles()

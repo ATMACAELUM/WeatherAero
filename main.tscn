@@ -52,6 +52,27 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ycdy4"]
+shader = ExtResource("7_5vw27")
+shader_parameter/panel_size = Vector2(320, 31)
+shader_parameter/glass_color = Color(0.15, 0.75, 0.95, 1)
+shader_parameter/highlight_color = Color(0.85, 1, 1, 1)
+shader_parameter/border_color = Color(0.85, 1, 1, 1)
+shader_parameter/opacity = 0.85
+shader_parameter/border_width = 2.0
+shader_parameter/corner_top_left = 6.0
+shader_parameter/corner_top_right = 6.0
+shader_parameter/corner_bottom_right = 6.0
+shader_parameter/corner_bottom_left = 6.0
+shader_parameter/gloss = 1.0
+shader_parameter/reflection = 1.0
+shader_parameter/gradient_strength = 1.0
+shader_parameter/highlight_position = 0.18
+shader_parameter/highlight_size = 0.65
+shader_parameter/shine_position = 0.035
+shader_parameter/shine_thickness = 0.025
+shader_parameter/shine_strength = 0.65
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dg77c"]
 shader = ExtResource("7_5vw27")
 shader_parameter/panel_size = Vector2(400, 200)
@@ -143,7 +164,7 @@ metadata/_custom_type_script = "uid://cqeylpmvouws1"
 script = ExtResource("2_efxa6")
 metadata/_custom_type_script = "uid://ckf0dpnk62se"
 
-[node name="Control" type="Control" parent="." unique_id=1407769660 node_paths=PackedStringArray("search", "multi_location_container", "city_name_label", "country_name_label", "todays_weather_label", "settings_button", "settings_display", "weather_bubbles_display", "weather_bubble_container")]
+[node name="Control" type="Control" parent="." unique_id=1407769660 node_paths=PackedStringArray("search", "multi_location_container", "city_name_label", "country_name_label", "todays_weather_label", "refresh_button", "settings_button", "settings_display", "weather_bubbles_display", "weather_bubble_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,11 +172,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_dg77c")
-search = NodePath("TopBar/LineEdit")
-multi_location_container = NodePath("ScrollContainer/VBoxContainer")
+search = NodePath("TopBar/Search")
+multi_location_container = NodePath("Bottom/ScrollContainer/VBoxContainer")
 city_name_label = NodePath("TopBar/CityName")
 country_name_label = NodePath("TopBar/CountryName")
 todays_weather_label = NodePath("TopBar/TodaysWeather")
+refresh_button = NodePath("TopBar/Panel/Refresh")
 settings_button = NodePath("TopBar/Panel3/Settings")
 settings_display = NodePath("Bottom/Settings")
 weather_bubbles_display = NodePath("Bottom/WeatherBubbles")
@@ -166,12 +188,14 @@ clip_children = 2
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 96.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
 
 [node name="TextureRect" type="TextureRect" parent="Control/TopBar" unique_id=1145720908]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("4_5vw27")
 
 [node name="Panel2" type="Panel" parent="Control/TopBar" unique_id=1840347486]
@@ -185,7 +209,8 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
 
-[node name="LineEdit" type="LineEdit" parent="Control/TopBar" unique_id=14705206]
+[node name="Search" type="LineEdit" parent="Control/TopBar" unique_id=14705206]
+material = SubResource("ShaderMaterial_ycdy4")
 layout_mode = 0
 offset_left = 768.0
 offset_top = 32.0
@@ -246,6 +271,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_ycdy4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_efxa6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_dg77c")
@@ -269,13 +295,15 @@ stretch_mode = 3
 [node name="Panel" type="Panel" parent="Control/TopBar" unique_id=145072604]
 material = SubResource("ShaderMaterial_dg77c")
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 32.0
-offset_right = -1104.0
-offset_bottom = -32.0
+anchors_preset = -1
+anchor_left = 0.014
+anchor_top = 0.41700003
+anchor_right = 0.042000003
+anchor_bottom = 0.66700006
+offset_left = -0.12800026
+offset_top = -8.0320015
+offset_right = -0.3840027
+offset_bottom = -0.03200531
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -288,6 +316,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_ycdy4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_efxa6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_dg77c")
@@ -314,6 +343,7 @@ layout_mode = 0
 offset_top = 96.0
 offset_right = 1152.0
 offset_bottom = 648.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lquwl")
 
 [node name="TextureRect" type="TextureRect" parent="Control/Bottom" unique_id=1819073712]
@@ -348,6 +378,20 @@ script = ExtResource("10_ycdy4")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Bottom" unique_id=834294164]
+layout_mode = 0
+offset_left = 800.0
+offset_top = -16.0
+offset_right = 1056.0
+offset_bottom = 480.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Bottom/ScrollContainer" unique_id=221684113]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="Settings" type="Panel" parent="Control/Bottom" unique_id=1522617427 node_paths=PackedStringArray("enable_carousel_button")]
 visible = false
@@ -357,6 +401,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("12_dg77c")
 enable_carousel_button = NodePath("CheckButton")
 
@@ -407,15 +452,3 @@ offset_top = 440.0
 offset_right = 407.0
 offset_bottom = 463.0
 text = "https://frutigeraeroarchive.org/"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Control" unique_id=834294164]
-layout_mode = 0
-offset_left = 800.0
-offset_top = 80.0
-offset_right = 1056.0
-offset_bottom = 576.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/ScrollContainer" unique_id=221684113]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3

@@ -70,6 +70,7 @@ offset_bottom = 0.039993286
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
+mouse_filter = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_7mycd")
 script = ExtResource("1_0vdqu")
 time_label = NodePath("Time")
@@ -88,6 +89,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_efxa6")
 
 [node name="Button" type="Button" parent="." unique_id=472704895]

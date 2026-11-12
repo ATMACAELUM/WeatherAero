@@ -6,7 +6,7 @@ signal multiple(dictionary)
 
 const LOAD_URL = "https://ipwho.is/"
 const SEARCH_URL = "https://geocoding-api.open-meteo.com/v1/search?name="
-const SEARCH_URL_END = "&count=10&language=en&format=json"
+const SEARCH_URL_END = "&count=20&language=en&format=json"
 
 @onready var req: HTTPRequest = HTTPRequest.new()
 
@@ -40,6 +40,9 @@ func reset():
 	country_code = ""
 	longitude = ""
 	latitude = ""
+
+func refresh():
+	location_set.emit(latitude, longitude)
 
 func get_search_location(search):
 	var res = req.request(SEARCH_URL + str(search).capitalize() + SEARCH_URL_END)
