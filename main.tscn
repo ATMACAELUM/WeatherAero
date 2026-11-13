@@ -173,18 +173,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("10_dg77c")
 script = ExtResource("3_dg77c")
-search = NodePath("TopBar/Search")
-multi_location_container = NodePath("Bottom/ScrollContainer/VBoxContainer")
-city_name_label = NodePath("TopBar/CityName")
-country_name_label = NodePath("TopBar/CountryName")
-todays_weather_label = NodePath("TopBar/TodaysWeather")
-refresh_button = NodePath("TopBar/Panel/Refresh")
-settings_button = NodePath("TopBar/Panel3/Settings")
-settings_display = NodePath("Bottom/Settings")
-weather_bubbles_display = NodePath("Bottom/WeatherBubbles")
-weather_bubble_container = NodePath("Bottom/WeatherBubbles/HBoxContainer")
+search = NodePath("Desktop/TopBar/Search")
+multi_location_container = NodePath("Desktop/Bottom/ScrollContainer/VBoxContainer")
+city_name_label = NodePath("Desktop/TopBar/CityName")
+country_name_label = NodePath("Desktop/TopBar/CountryName")
+todays_weather_label = NodePath("Desktop/TopBar/TodaysWeather")
+refresh_button = NodePath("Desktop/TopBar/Panel/Refresh")
+settings_button = NodePath("Desktop/TopBar/Panel3/Settings")
+settings_display = NodePath("Desktop/Bottom/Settings")
+weather_bubbles_display = NodePath("Desktop/Bottom/WeatherBubbles")
+weather_bubble_container = NodePath("Desktop/Bottom/WeatherBubbles/HBoxContainer")
 
-[node name="TopBar" type="Panel" parent="Control" unique_id=1376418526]
+[node name="Desktop" type="Control" parent="Control" unique_id=1436940976]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="Panel" parent="Control/Desktop" unique_id=1376418526]
 clip_children = 2
 layout_mode = 0
 offset_right = 1152.0
@@ -192,14 +200,14 @@ offset_bottom = 96.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
 
-[node name="TextureRect" type="TextureRect" parent="Control/TopBar" unique_id=1145720908]
+[node name="TextureRect" type="TextureRect" parent="Control/Desktop/TopBar" unique_id=1145720908]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("4_5vw27")
 
-[node name="Panel2" type="Panel" parent="Control/TopBar" unique_id=1840347486]
+[node name="Panel2" type="Panel" parent="Control/Desktop/TopBar" unique_id=1840347486]
 material = SubResource("ShaderMaterial_kek77")
 layout_mode = 1
 anchors_preset = 15
@@ -210,7 +218,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
 
-[node name="Search" type="LineEdit" parent="Control/TopBar" unique_id=14705206]
+[node name="Search" type="LineEdit" parent="Control/Desktop/TopBar" unique_id=14705206]
 layout_mode = 0
 offset_left = 768.0
 offset_top = 32.0
@@ -218,7 +226,7 @@ offset_right = 1088.0
 offset_bottom = 63.0
 placeholder_text = "Search"
 
-[node name="TextureRect" type="TextureRect" parent="Control/TopBar/Search" unique_id=1322442471]
+[node name="TextureRect" type="TextureRect" parent="Control/Desktop/TopBar/Search" unique_id=1322442471]
 modulate = Color(1, 1, 1, 0.47058824)
 show_behind_parent = true
 material = SubResource("ShaderMaterial_w48qg")
@@ -233,7 +241,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_57qmd")
 
-[node name="CityName" type="Label" parent="Control/TopBar" unique_id=1665164355]
+[node name="CityName" type="Label" parent="Control/Desktop/TopBar" unique_id=1665164355]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 16.0
@@ -243,7 +251,7 @@ text = "City Name"
 label_settings = ExtResource("7_4c57u")
 vertical_alignment = 1
 
-[node name="CountryName" type="Label" parent="Control/TopBar" unique_id=88006255]
+[node name="CountryName" type="Label" parent="Control/Desktop/TopBar" unique_id=88006255]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 48.0
@@ -253,7 +261,7 @@ text = "Country Name"
 label_settings = ExtResource("7_4c57u")
 vertical_alignment = 1
 
-[node name="TodaysWeather" type="Label" parent="Control/TopBar" unique_id=1673340325]
+[node name="TodaysWeather" type="Label" parent="Control/Desktop/TopBar" unique_id=1673340325]
 layout_mode = 0
 offset_left = 384.0
 offset_top = 16.0
@@ -264,7 +272,7 @@ label_settings = ExtResource("7_4c57u")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel3" type="Panel" parent="Control/TopBar" unique_id=759186738]
+[node name="Panel3" type="Panel" parent="Control/Desktop/TopBar" unique_id=759186738]
 material = SubResource("ShaderMaterial_dg77c")
 layout_mode = 1
 anchors_preset = -1
@@ -280,7 +288,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Settings" type="Button" parent="Control/TopBar/Panel3" unique_id=451550810]
+[node name="Settings" type="Button" parent="Control/Desktop/TopBar/Panel3" unique_id=451550810]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = -1
@@ -295,7 +303,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ycdy4")
 icon_alignment = 1
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/TopBar/Panel3/Settings" unique_id=684505423]
+[node name="TextureRect" type="TextureRect" parent="Control/Desktop/TopBar/Panel3/Settings" unique_id=684505423]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -307,7 +315,7 @@ texture = ExtResource("9_efxa6")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="Panel" type="Panel" parent="Control/TopBar" unique_id=145072604]
+[node name="Panel" type="Panel" parent="Control/Desktop/TopBar" unique_id=145072604]
 material = SubResource("ShaderMaterial_dg77c")
 layout_mode = 1
 anchors_preset = -1
@@ -323,7 +331,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Refresh" type="Button" parent="Control/TopBar/Panel" unique_id=1302966414]
+[node name="Refresh" type="Button" parent="Control/Desktop/TopBar/Panel" unique_id=1302966414]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 15
@@ -340,7 +348,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ycdy4")
 icon_alignment = 1
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/TopBar/Panel/Refresh" unique_id=1228996715]
+[node name="TextureRect" type="TextureRect" parent="Control/Desktop/TopBar/Panel/Refresh" unique_id=1228996715]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -352,7 +360,7 @@ texture = ExtResource("8_4c57u")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="Bottom" type="Panel" parent="Control" unique_id=696640765]
+[node name="Bottom" type="Panel" parent="Control/Desktop" unique_id=696640765]
 clip_children = 2
 layout_mode = 0
 offset_top = 96.0
@@ -361,7 +369,7 @@ offset_bottom = 648.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lquwl")
 
-[node name="TextureRect" type="TextureRect" parent="Control/Bottom" unique_id=1819073712]
+[node name="TextureRect" type="TextureRect" parent="Control/Desktop/Bottom" unique_id=1819073712]
 layout_mode = 0
 offset_top = -98.0
 offset_right = 1920.0
@@ -369,7 +377,7 @@ offset_bottom = 1102.0
 mouse_filter = 2
 texture = ExtResource("4_5vw27")
 
-[node name="Panel2" type="Panel" parent="Control/Bottom" unique_id=199477317]
+[node name="Panel2" type="Panel" parent="Control/Desktop/Bottom" unique_id=199477317]
 material = SubResource("ShaderMaterial_efxa6")
 layout_mode = 1
 anchors_preset = 15
@@ -380,7 +388,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
 
-[node name="WeatherBubbles" type="ScrollContainer" parent="Control/Bottom" unique_id=1019264343]
+[node name="WeatherBubbles" type="ScrollContainer" parent="Control/Desktop/Bottom" unique_id=1019264343]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 40.0
@@ -389,25 +397,25 @@ offset_bottom = 480.0
 follow_focus = true
 script = ExtResource("10_ycdy4")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Bottom/WeatherBubbles" unique_id=489061062]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Desktop/Bottom/WeatherBubbles" unique_id=489061062]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/Bottom" unique_id=834294164]
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Desktop/Bottom" unique_id=834294164]
 layout_mode = 0
 offset_left = 800.0
 offset_top = -16.0
 offset_right = 1056.0
 offset_bottom = 480.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Bottom/ScrollContainer" unique_id=221684113]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Desktop/Bottom/ScrollContainer" unique_id=221684113]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Settings" type="Panel" parent="Control/Bottom" unique_id=1522617427 node_paths=PackedStringArray("enable_carousel_button")]
+[node name="Settings" type="Panel" parent="Control/Desktop/Bottom" unique_id=1522617427 node_paths=PackedStringArray("enable_carousel_button")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -419,7 +427,7 @@ mouse_filter = 2
 script = ExtResource("12_dg77c")
 enable_carousel_button = NodePath("CheckButton")
 
-[node name="CheckButton" type="CheckButton" parent="Control/Bottom/Settings" unique_id=1698058813]
+[node name="CheckButton" type="CheckButton" parent="Control/Desktop/Bottom/Settings" unique_id=1698058813]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 8.0
@@ -427,7 +435,7 @@ offset_right = 273.0
 offset_bottom = 39.0
 text = "Enable Scroll Carosel"
 
-[node name="Label" type="Label" parent="Control/Bottom/Settings" unique_id=1734167644]
+[node name="Label" type="Label" parent="Control/Desktop/Bottom/Settings" unique_id=1734167644]
 layout_mode = 0
 offset_left = 72.0
 offset_top = 304.0
@@ -435,7 +443,7 @@ offset_right = 183.0
 offset_bottom = 327.0
 text = "Special Thanks"
 
-[node name="Label2" type="Label" parent="Control/Bottom/Settings" unique_id=448978397]
+[node name="Label2" type="Label" parent="Control/Desktop/Bottom/Settings" unique_id=448978397]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 344.0
@@ -443,7 +451,7 @@ offset_right = 224.0
 offset_bottom = 367.0
 text = "https://ipwho.is/"
 
-[node name="Label3" type="Label" parent="Control/Bottom/Settings" unique_id=861389744]
+[node name="Label3" type="Label" parent="Control/Desktop/Bottom/Settings" unique_id=861389744]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 376.0
@@ -451,7 +459,7 @@ offset_right = 404.0
 offset_bottom = 399.0
 text = "https://geocoding-api.open-meteo.com/"
 
-[node name="Label4" type="Label" parent="Control/Bottom/Settings" unique_id=2089295753]
+[node name="Label4" type="Label" parent="Control/Desktop/Bottom/Settings" unique_id=2089295753]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 408.0
@@ -459,7 +467,7 @@ offset_right = 407.0
 offset_bottom = 431.0
 text = "https://api.open-meteo.com/v1/forecast"
 
-[node name="Label5" type="Label" parent="Control/Bottom/Settings" unique_id=1377773656]
+[node name="Label5" type="Label" parent="Control/Desktop/Bottom/Settings" unique_id=1377773656]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 440.0
