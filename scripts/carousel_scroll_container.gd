@@ -23,7 +23,12 @@ func _on_update():
 	enabled = gl.carousel_enabled
 
 func _on_scroll(_value: float = 0.0) -> void:
-	if enabled == false: return
+	if enabled == false: 
+		for each in get_child(0).get_children():
+			each.offset_transform_scale = Vector2(1.0, 1.0)
+			each.z_index = 0
+		return
+
 	var container_center: float = global_position.x + size.x / 2.0
 
 	for each in get_child(0).get_children():

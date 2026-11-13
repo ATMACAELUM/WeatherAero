@@ -60,6 +60,9 @@ corner_radius_top_right = 32
 corner_radius_bottom_right = 32
 corner_radius_bottom_left = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_ycdy4"]
+font_color = Color(0, 0, 0, 1)
+
 [node name="Button" type="Button" unique_id=1897691053 node_paths=PackedStringArray("time_label", "temp_label", "year_label", "month_label", "day_label", "weather_label", "button")]
 custom_minimum_size = Vector2(256, 256)
 anchors_preset = -1
@@ -111,6 +114,7 @@ offset_left = 104.0
 offset_top = 72.0
 offset_right = 152.0
 offset_bottom = 120.0
+label_settings = SubResource("LabelSettings_ycdy4")
 
 [node name="Year" type="Label" parent="." unique_id=2031878195]
 layout_mode = 1
@@ -123,6 +127,7 @@ offset_left = 0.1279993
 offset_top = 0.06399965
 offset_right = -0.06400299
 offset_bottom = 0.02399826
+label_settings = SubResource("LabelSettings_ycdy4")
 
 [node name="Day" type="Label" parent="." unique_id=1890979041]
 layout_mode = 1
@@ -134,6 +139,7 @@ anchor_bottom = 0.125
 offset_left = 0.06399536
 offset_top = 0.06399965
 offset_right = -0.06401062
+label_settings = SubResource("LabelSettings_ycdy4")
 
 [node name="Month" type="Label" parent="." unique_id=1040702227]
 layout_mode = 1
@@ -145,6 +151,7 @@ anchor_bottom = 0.12100001
 offset_top = 0.06399965
 offset_right = 0.12799072
 offset_bottom = 0.02399826
+label_settings = SubResource("LabelSettings_ycdy4")
 clip_text = true
 
 [node name="Temp" type="Label" parent="." unique_id=1766617251]
@@ -153,6 +160,7 @@ offset_left = 104.0
 offset_top = 104.0
 offset_right = 152.0
 offset_bottom = 152.0
+label_settings = SubResource("LabelSettings_ycdy4")
 
 [node name="Weather" type="Label" parent="." unique_id=1589126555]
 layout_mode = 0
@@ -160,5 +168,6 @@ offset_left = 64.0
 offset_top = 168.0
 offset_right = 192.0
 offset_bottom = 216.0
+label_settings = SubResource("LabelSettings_ycdy4")
 horizontal_alignment = 1
 vertical_alignment = 1
